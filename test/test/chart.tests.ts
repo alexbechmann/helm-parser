@@ -1,26 +1,7 @@
-# helm-parser
-
-Template a helm chart, and load into a JavaScript object.
-
-## Installation
-
-```bash
-npm install helm-parser
-```
-
-## Usage
-
-```ts
-
-```
-
-## Usage with Mocha
-
-```ts
 import { describe, it } from "mocha";
 import { expect } from "chai";
 import path from "path";
-import { createHelmParser } from "helm-parser";
+import { createHelmParser } from "../../packages/helm-parser/src/index";
 import { ValuesSchema } from "./values-schema";
 
 const helmParser = createHelmParser<ValuesSchema>({
@@ -39,5 +20,16 @@ describe("chart tests", () => {
     const deployment = manifests.filter((manifest) => manifest.kind === "Deployment")[0];
     expect(deployment.spec.replicas).to.equal(3);
   });
+
+  it("can search deployments only", async () => {
+    const { deployments } = helmParser.template({
+      namespace: "my-namespace",
+      releaseName: "my-release",
+      values: {
+        replicaCount: 3,
+      },
+    });
+
+    expect(deployments.every((deployment) => deployment.kind === "Deployment")).to.be.true;
+  });
 });
-```
