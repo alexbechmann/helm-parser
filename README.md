@@ -2,9 +2,7 @@
 
 Template a helm chart with the Helm CLI and load the manifests into an array of JavaScript objects. Mainly intended for use within a test suite.
 
-Helm charts can get very complicated at scale, with an infinite combination of values that can be passed to the chart by consumers.
-
-You are then able to write comprensive tests for your chart, using your favourite JS testing framework.
+Helm charts can get very complicated at scale, with an infinite combination of values that can be passed to the chart by consumers. With helm-parser, you can write comprehensive tests for your chart, using your favourite JS testing framework.
 
 ## Features
 
@@ -40,12 +38,33 @@ const { manifests } = helmParser.template({
   },
 });
 const deployments = manifests.filter((manifest) => manifest.kind === "Deployment");
-
 ```
 
 ## Usage with Mocha
 
 ### Optionally add a JSON Schema to your chart
+
+You should place this file alongside your `Chart.yml` file.
+
+This is a helm feature which will validate parameters, as well as allow you to generate a typescript definition for your values.
+
+<https://helm.sh/docs/topics/charts/#schema-files>
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Values",
+  "type": "object",
+  "properties": {
+    "replicaCount": {
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}
+```
+
+`values.schema.json`
 
 ```json
 {
