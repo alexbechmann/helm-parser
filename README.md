@@ -22,8 +22,8 @@ npm install helm-parser
 import path from "path";
 import { createHelmParser } from "helm-parser";
 
-interface ValuesSchema = {
-  replicaCount: number
+interface ValuesSchema {
+  replicaCount: number;
 }
 
 const helmParser = createHelmParser<ValuesSchema>({
@@ -34,7 +34,7 @@ const { manifests } = helmParser.template({
   namespace: "my-namespace",
   releaseName: "my-release",
   values: {
-    replicaCount: 3
+    replicaCount: 3,
   },
 });
 
