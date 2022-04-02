@@ -45,7 +45,7 @@ const deployments = manifests.filter((manifest) => manifest.kind === "Deployment
 
 ### Optionally add a JSON Schema to your chart
 
-You should place this file alongside your `Chart.yml` file.
+You should place this file alongside your `Chart.yaml` file.
 
 This is a helm feature which will validate parameters, as well as allow you to generate a typescript definition for your values.
 
