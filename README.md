@@ -22,11 +22,7 @@ npm install helm-parser
 import path from "path";
 import { createHelmParser } from "helm-parser";
 
-interface ValuesSchema {
-  replicaCount: number;
-}
-
-const helmParser = createHelmParser<ValuesSchema>({
+const helmParser = createHelmParser({
   chartPath: path.resolve(__dirname, "./path-to/my-chart-dir"),
 });
 
