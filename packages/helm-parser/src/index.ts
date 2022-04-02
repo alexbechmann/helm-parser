@@ -48,7 +48,7 @@ export const createHelmParser = <THelmChartValues = any>(parserOptions: ParserOp
         .filter(Boolean);
 
       const deployments = manifests.filter(manifest => manifest.kind === "Deployment") as Deployment[];
-      const ingresses = manifests.filter(manifest => manifest.kind === "Deployment") as Ingress[];
+      const ingresses = manifests.filter(manifest => manifest.kind === "Ingress") as Ingress[];
 
       return {
         manifests,
