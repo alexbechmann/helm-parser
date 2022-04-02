@@ -51,20 +51,6 @@ This is a helm feature which will validate parameters, as well as allow you to g
 
 <https://helm.sh/docs/topics/charts/#schema-files>
 
-```json
-{
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Values",
-  "type": "object",
-  "properties": {
-    "replicaCount": {
-      "type": "integer",
-      "minimum": 1
-    }
-  }
-}
-```
-
 `values.schema.json`
 
 ```json
