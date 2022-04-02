@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "replicaCount": {
+      "type": "number"
+    },
+    "something": {
+      "type": "string",
+      "enum": ["a", "b", "c"]
+    }
+  }
+}
