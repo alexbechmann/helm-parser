@@ -37,6 +37,7 @@ const { manifests } = helmParser.template({
     replicaCount: 3
   },
 });
+
 const deployments = manifests.filter((manifest) => manifest.kind === "Deployment");
 ```
 
