@@ -93,6 +93,25 @@ npm install -D helm-parser mocha chai @types/chai @types/mocha esbuild esbuild-r
 }
 ```
 
+### Configure mocha
+
+`.mocharc.json`
+
+```json
+{
+  "$schema": "https://json.schemastore.org/mocharc",
+  "require": ["esbuild-register"],
+  "watch-extensions": ["ts"],
+  "extension": ["ts"],
+  "recursive": true,
+  "reporter": "spec",
+  "timeout": 60000,
+  "exit": true
+}
+```
+
+### Write tests
+
 `test/chart.tests.ts`
 
 ```ts
