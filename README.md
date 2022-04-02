@@ -10,6 +10,10 @@ Helm charts can get very complicated at scale, with an infinite combination of v
 - You can provide a TypeScript type your values (or autogenerate one from a JSON schema)
 - Usage with any JS test framework
 
+## Prerequisites
+
+- Helm CLI installed on system
+
 ## Installation
 
 ```bash
