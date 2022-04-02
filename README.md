@@ -75,7 +75,7 @@ This is a helm feature which will validate parameters, as well as allow you to g
 ````bash
 
 ```bash
-npm install -D mocha chai @types/chai @types/mocha esbuild esbuild-register json-schema-to-typescript typescript
+npm install -D helm-parser mocha chai @types/chai @types/mocha esbuild esbuild-register json-schema-to-typescript typescript
 ````
 
 ### Configure scripts
