@@ -17,10 +17,10 @@ Helm charts can get very complicated at scale, with an infinite combination of v
 ## Features
 
 - [x] Loads the chart's manifests into an array of JavaScript objects
+- [x] TypeScript types for manifests and values parameters
 - [x] Helper functions to easily pick out a specific manifest
 - [x] You can provide a TypeScript type your values (or autogenerate one from a JSON schema)
 - [x] Usage with any JS test framework
-- [x] Includes TypeScript definitions
 
 ## Prerequisites
 
