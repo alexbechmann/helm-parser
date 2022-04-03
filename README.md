@@ -38,7 +38,7 @@ npm install helm-parser
 import path from "path";
 import { HelmParser } from "helm-parser";
 
-const helmParser = new HelmParser<ValuesSchema>({
+const helmParser = new HelmParser({
   chartPath: path.resolve(__dirname, "./path-to/my-chart-dir");
 });
 
