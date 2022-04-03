@@ -12,13 +12,15 @@ _   _      _             ____
 
 Template a helm chart with the Helm CLI and load the manifests into an array of JavaScript objects. Mainly intended for use within a test suite.
 
-Helm charts can get very complicated at scale, with an infinite combination of values that can be passed to the chart by consumers. With helm-parser, you can write comprehensive tests for your chart, using your favourite JS testing framework.
+Helm charts can get very complicated at scale, with an infinite combination of values that can be passed to the chart by consumers. With Helm Parser, you can write comprehensive tests for your chart, using your favourite JS testing framework.
 
 ## Features
 
-- Includes TypeScript definitions
-- You can provide a TypeScript type your values (or autogenerate one from a JSON schema)
-- Usage with any JS test framework
+- [x] Loads the chart's manifests into an array of JavaScript objects
+- [x] Helper functions to easily pick out a specific manifest
+- [x] You can provide a TypeScript type your values (or autogenerate one from a JSON schema)
+- [x] Usage with any JS test framework
+- [x] Includes TypeScript definitions
 
 ## Prerequisites
 
