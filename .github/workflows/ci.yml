@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Use Node ${{ matrix.node }}
         uses: actions/setup-node@v1
@@ -43,6 +45,8 @@ jobs:
     name: Deploy package
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
+    needs:
+      - build
 
     steps:
       - name: Checkout repo
