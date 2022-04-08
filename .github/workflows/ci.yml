@@ -59,6 +59,8 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Use Node 14.x
+
       - name: Version
         run: |
           VERSION=$(nbgv get-version -v NpmPackageVersion)
