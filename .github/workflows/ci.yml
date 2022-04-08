@@ -45,6 +45,9 @@ jobs:
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
       - name: Version
         run: |
           VERSION=$(nbgv get-version -v NpmPackageVersion)
