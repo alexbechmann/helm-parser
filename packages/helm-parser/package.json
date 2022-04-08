@@ -13,9 +13,9 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
+    "prepare": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
@@ -26,7 +26,7 @@
     }
   },
   "name": "helm-parser",
-  "author": "Alex",
+  "author": "Alex Bechmann",
   "module": "dist/helm-parser.esm.js",
   "size-limit": [
     {

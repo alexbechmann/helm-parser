@@ -1,0 +1,89 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    name: Build and test on Node ${{ matrix.node }} and ${{ matrix.os }}
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node:
+          - "14.x"
+        os:
+          - ubuntu-latest
+          # - windows-latest
+          # - macOS-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Npm Install
+        run: npm install
+
+      - name: Test install
+        run: npm install
+        working-directory: ./test
+
+      - name: Test
+        run: npm test
+        working-directory: ./test
+
+      - name: Build
+        run: npm build
+        working-directory: ./packages/helm-parser
+
+  publish:
+    name: Publish package
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
+    needs:
+      - build
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Use Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Npm Install
+        run: npm install
+
+      - name: Copy README
+        run: cp ./README.md ./packages/helm-parser/README.md
+
+      - name: Version
+        run: |
+          VERSION=$(nbgv get-version -v NpmPackageVersion)
+          echo Version is ${VERSION}
+          lerna version ${VERSION} --no-push --no-git-tag-version --exact -y
+          git config --global user.email "build@helm-parser.com"
+          git config --global user.name "helm-parser build"
+          git commit -am "Temp version commit"
+
+      - name: Lerna publish
+        run: |
+          npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
+          npm config set access public
+          npx lerna publish from-package --yes
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
