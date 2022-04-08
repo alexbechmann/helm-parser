@@ -20,8 +20,8 @@ jobs:
           - "14.x"
         os:
           - ubuntu-latest
-          - windows-latest
-          - macOS-latest
+          # - windows-latest
+          # - macOS-latest
 
     steps:
       - name: Checkout repo
@@ -64,6 +64,9 @@ jobs:
           VERSION=$(nbgv get-version -v NpmPackageVersion)
           echo Version is ${VERSION}
           lerna version ${VERSION} --no-push --no-git-tag-version --exact -y
+          git config --global user.email "build@helm-parser.com"
+          git config --global user.name "helm-parser build"
+          git commit -am "Temp version commit"
 
       - name: Lerna publish
         run: |
