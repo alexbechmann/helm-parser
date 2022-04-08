@@ -59,13 +59,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Npm Install
-        run: npm install
-
-      - name: Build
-        run: npm build
-        working-directory: ./packages/helm-parser
-
       - name: Version
         run: |
           VERSION=$(nbgv get-version -v NpmPackageVersion)
@@ -74,6 +67,13 @@ jobs:
           git config --global user.email "build@helm-parser.com"
           git config --global user.name "helm-parser build"
           git commit -am "Temp version commit"
+
+      - name: Npm Install
+        run: npm install
+
+      - name: Build
+        run: npm build
+        working-directory: ./packages/helm-parser
 
       - name: Lerna publish
         run: |
