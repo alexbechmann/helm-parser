@@ -32,8 +32,8 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+      - name: Npm Install
+        run: npm install
 
       - name: Test install
         run: npm install
@@ -53,7 +53,6 @@ jobs:
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
     needs:
       - build
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -67,7 +66,6 @@ jobs:
           lerna version ${VERSION} --no-push --no-git-tag-version --exact -y
 
       - name: Lerna publish
-        if: github.ref == 'refs/heads/master'
         run: |
           npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
           npm config set access public
