@@ -47,8 +47,8 @@ jobs:
         run: npm build
         working-directory: ./packages/helm-parser
 
-  deploy:
-    name: Deploy package
+  publish:
+    name: Publish package
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
     needs:
@@ -72,7 +72,7 @@ jobs:
         run: |
           npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
           npm config set access public
-          npx lerna publish from-package --yes --contents pkg
+          npx lerna publish from-package --yes
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
