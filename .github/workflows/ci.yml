@@ -20,8 +20,8 @@ jobs:
           - "14.x"
         os:
           - ubuntu-latest
-          # - windows-latest
-          # - macOS-latest
+          - windows-latest
+          - macOS-latest
 
     steps:
       - name: Checkout repo
@@ -47,8 +47,8 @@ jobs:
     name: Deploy package
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
-    # needs:
-    #   - build
+    needs:
+      - build
 
     steps:
       - name: Checkout repo
@@ -62,12 +62,12 @@ jobs:
           echo Version is ${VERSION}
           lerna version ${VERSION} --no-push --no-git-tag-version --exact -y
 
-      # - name: Lerna publish
-      #   if: github.ref == 'refs/heads/master'
-      #   run: |
-      #     npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      #     npm config set access public
-      #     npx lerna publish from-package --yes --contents pkg
-      #   env:
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Lerna publish
+        if: github.ref == 'refs/heads/master'
+        run: |
+          npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
+          npm config set access public
+          npx lerna publish from-package --yes --contents pkg
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
