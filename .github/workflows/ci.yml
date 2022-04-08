@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
+    name: Build and test on Node ${{ matrix.node }} and ${{ matrix.os }}
 
     runs-on: ${{ matrix.os }}
     strategy:
@@ -34,6 +34,10 @@ jobs:
 
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1
+
+      - name: Test install
+        run: npm install
+        working-directory: ./test
 
       - name: Test
         run: npm test
