@@ -67,10 +67,6 @@ jobs:
       - name: Npm Install
         run: npm install
 
-      - name: Build
-        run: npm build
-        working-directory: ./packages/helm-parser
-
       - name: Version
         run: |
           VERSION=$(nbgv get-version -v NpmPackageVersion)
