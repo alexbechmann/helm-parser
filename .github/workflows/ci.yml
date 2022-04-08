@@ -67,6 +67,9 @@ jobs:
       - name: Npm Install
         run: npm install
 
+      - name: Copy README
+        run: cp ./README.md ./packages/helm-parser/README.md
+
       - name: Version
         run: |
           VERSION=$(nbgv get-version -v NpmPackageVersion)
