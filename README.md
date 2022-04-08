@@ -98,11 +98,9 @@ This is a helm feature which will validate parameters, as well as allow you to g
 
 ### Install depdenencies
 
-````bash
-
 ```bash
 npm install -D helm-parser mocha chai @types/chai @types/mocha esbuild esbuild-register json-schema-to-typescript typescript
-````
+```
 
 ### Configure scripts
 
