@@ -1,6 +1,6 @@
 # Helm Parser
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![code style: prettier](https://camo.githubusercontent.com/92e9f7b1209bab9e3e9cd8cdf62f072a624da461/68747470733a2f2f666c61742e62616467656e2e6e65742f62616467652f4275696c74253230576974682f547970655363726970742f626c7565)](https://github.com/microsoft/TypeScript) ![CI](https://github.com/alexbechmann/helm-parser/actions/workflows/ci.yml/badge.svg?branch=master)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![code style: prettier](https://camo.githubusercontent.com/92e9f7b1209bab9e3e9cd8cdf62f072a624da461/68747470733a2f2f666c61742e62616467656e2e6e65742f62616467652f4275696c74253230576974682f547970655363726970742f626c7565)](https://github.com/microsoft/TypeScript) ![CI](https://github.com/alexbechmann/helm-parser/actions/workflows/ci.yml/badge.svg?branch=main)
 
 ```
 _   _      _             ____
@@ -98,11 +98,9 @@ This is a helm feature which will validate parameters, as well as allow you to g
 
 ### Install depdenencies
 
-````bash
-
 ```bash
 npm install -D helm-parser mocha chai @types/chai @types/mocha esbuild esbuild-register json-schema-to-typescript typescript
-````
+```
 
 ### Configure scripts
 
