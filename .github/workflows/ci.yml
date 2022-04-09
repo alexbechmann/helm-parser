@@ -50,7 +50,7 @@ jobs:
   publish:
     name: Publish package
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
     needs:
       - build
     steps:
