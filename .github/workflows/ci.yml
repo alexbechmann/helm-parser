@@ -80,6 +80,17 @@ jobs:
           git commit -am "Temp version commit"
 
       - name: Lerna publish
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
+          npm config set access public
+          npx lerna publish from-package --yes --dist-tag alpha
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lerna publish
+        if: github.ref == 'refs/heads/main'
         run: |
           npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
           npm config set access public

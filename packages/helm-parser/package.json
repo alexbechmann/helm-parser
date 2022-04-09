@@ -27,6 +27,10 @@
   },
   "name": "helm-parser",
   "author": "Alex Bechmann",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexbechmann/helm-parser"
+  },
   "module": "dist/helm-parser.esm.js",
   "size-limit": [
     {
