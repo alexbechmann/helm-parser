@@ -1,6 +1,8 @@
 # Helm Parser
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) [![code style: prettier](https://camo.githubusercontent.com/92e9f7b1209bab9e3e9cd8cdf62f072a624da461/68747470733a2f2f666c61742e62616467656e2e6e65742f62616467652f4275696c74253230576974682f547970655363726970742f626c7565)](https://github.com/microsoft/TypeScript) ![CI](https://github.com/alexbechmann/helm-parser/actions/workflows/ci.yml/badge.svg?branch=main)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=rounded-square)](https://github.com/prettier/prettier)
+[![CI](https://github.com/alexbechmann/helm-parser/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/alexbechmann/helm-parser/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/helm-parser.svg)](https://www.npmjs.com/package/helm-parser)
 
 ```
 _   _      _             ____
