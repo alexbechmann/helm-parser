@@ -112,7 +112,7 @@ npm install -D helm-parser vitest json-schema-to-typescript typescript
 {
   // ...
   "scripts": {
-    "test": "mocha",
+    "test": "vitest",
     "pretest": "npm run generate-types",
     "generate-types": "json2ts ./path-to/my-chart-dir/values.schema.json > ./test/values-schema.d.ts"
   }
