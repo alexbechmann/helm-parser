@@ -4,16 +4,10 @@ on:
     branches:
       - main
       - develop
-    paths:
-      - "packages/helm-parser"
-      - "version.json"
   pull_request:
     branches:
       - main
       - develop
-    paths:
-      - "packages/helm-parser"
-      - "version.json"
 
 jobs:
   build:
@@ -23,7 +17,7 @@ jobs:
     strategy:
       matrix:
         node:
-          - "14.x"
+          - "16.x"
         os:
           - ubuntu-latest
           # - windows-latest
@@ -50,7 +44,7 @@ jobs:
         working-directory: ./test
 
       - name: Build
-        run: npm build
+        run: npm run build
         working-directory: ./packages/helm-parser
 
   publish:
@@ -68,7 +62,7 @@ jobs:
       - name: Use Node
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Npm Install
         run: npm install
