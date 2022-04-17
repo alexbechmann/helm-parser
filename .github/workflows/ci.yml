@@ -5,17 +5,17 @@ on:
       - main
       - develop
     paths:
-      - "packages/helm-parser"
+      - "packages/helm-parser/**"
       - "version.json"
-      - "test"
+      - "test/**"
   pull_request:
     branches:
       - main
       - develop
     paths:
-      - "packages/helm-parser"
+      - "packages/helm-parser/**"
       - "version.json"
-      - "test"
+      - "test/**"
 
 jobs:
   build:
