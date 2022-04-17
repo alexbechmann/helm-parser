@@ -44,7 +44,7 @@ jobs:
         working-directory: ./test
 
       - name: Build
-        run: npm build
+        run: npm run build
         working-directory: ./packages/helm-parser
 
   publish:
