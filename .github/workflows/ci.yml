@@ -4,18 +4,10 @@ on:
     branches:
       - main
       - develop
-    paths:
-      - "packages/helm-parser/**"
-      - "version.json"
-      - "test/**"
   pull_request:
     branches:
       - main
       - develop
-    paths:
-      - "packages/helm-parser/**"
-      - "version.json"
-      - "test/**"
 
 jobs:
   build:
