@@ -1,4 +1,4 @@
-import { assert, expect, test } from "vitest";
+import { expect, test } from "vitest";
 import path from "path";
 import { HelmParser } from "../../packages/helm-parser/src/index";
 import { ValuesSchema } from "./values-schema";
