@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         node:
-          - "14.x"
+          - "16.x"
         os:
           - ubuntu-latest
           # - windows-latest
@@ -62,7 +62,7 @@ jobs:
       - name: Use Node
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Npm Install
         run: npm install
