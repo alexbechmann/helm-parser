@@ -2,22 +2,40 @@
   "name": "create-helm-tests",
   "version": "1.0.0",
   "description": "",
-  "bin": {
-    "create-helm-tests": "bin/create-helm-tests.js"
-  },
+  "main": "index.js",
   "scripts": {
+    "build": "pika-pack build",
     "test": "npm-run-all test:with-values.schema test:without-values.schema",
     "posttest": "npm run cleanup",
-    "pretest": "npm run cleanup",
+    "pretest": "npm run cleanup && npm run build",
     "cleanup": "rm -rf ./example1 && rm -rf ./example2",
-    "test:with-values.schema": "rm -rf ./example1 && node ./bin/create-helm-tests.js example1 --chart-path ../../test/charts/my-chart && cd example1 && npm i ../../helm-parser && npm test -- --run",
-    "test:without-values.schema": "rm -rf ./example2 && node ./bin/create-helm-tests.js example2 --chart-path ../../test/charts/my-chart2 && cd example2 && npm i ../../helm-parser && npm test -- --run"
+    "test:with-values.schema": "rm -rf ./example1 && node ./pkg/dist-node/index.bin.js example1 --chart-path ../../test/charts/my-chart && cd example1 && npm i ../../helm-parser/pkg && npm test -- --run",
+    "test:without-values.schema": "rm -rf ./example2 && node ./pkg/dist-node/index.bin.js example2 --chart-path ../../test/charts/my-chart2 && cd example2 && npm i ../../helm-parser/pkg && npm test -- --run"
   },
-  "author": "Alex",
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-ts-standard-pkg"
+      ],
+      [
+        "@pika/plugin-build-node"
+      ],
+      [
+        "@pika/plugin-simple-bin",
+        {
+          "bin": "create-helm-tests"
+        }
+      ]
+    ]
+  },
+  "keywords": [],
+  "author": "Alex Bechmann",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexbechmann/helm-parser"
+  },
   "license": "ISC",
   "dependencies": {
-    "esbuild": "^0.14.36",
-    "esbuild-register": "^3.3.2",
     "fs-extra": "^10.1.0",
     "ora": "^6.1.0",
     "prettier": "^2.6.2",
@@ -25,6 +43,10 @@
     "yargs": "^17.4.1"
   },
   "devDependencies": {
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-node": "^0.9.2",
+    "@pika/plugin-simple-bin": "^0.9.2",
+    "@pika/plugin-ts-standard-pkg": "^0.9.2",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^17.0.24",
     "@types/shelljs": "^0.8.11",
