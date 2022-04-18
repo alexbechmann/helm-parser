@@ -39,12 +39,12 @@ jobs:
         run: npm run build
         working-directory: ./packages/helm-parser
 
-      - name: Test helm-parser
-        run: npm test
-        working-directory: ./test
-
       - name: Test install
         run: npm install
+        working-directory: ./test
+
+      - name: Test helm-parser
+        run: npm test
         working-directory: ./test
 
       - name: Test create-helm-tests
