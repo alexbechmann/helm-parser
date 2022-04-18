@@ -6,7 +6,7 @@ import chalk from "chalk";
 import { runCommand } from "./run-command";
 import prettier from "prettier";
 
-export async function run(args: any) {
+async function run(args: any) {
   const argv: any = yargs(hideBin(args)).argv;
 
   const name = argv._[0];
@@ -120,3 +120,5 @@ export async function run(args: any) {
     console.log(`npm test`);
   }
 }
+
+export default run;

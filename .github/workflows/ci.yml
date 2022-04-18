@@ -88,7 +88,7 @@ jobs:
         run: |
           npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
           npm config set access public
-          npx lerna publish from-package --yes --dist-tag alpha
+          npx lerna publish from-package --yes --contents pkg --dist-tag alpha
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -98,7 +98,7 @@ jobs:
         run: |
           npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
           npm config set access public
-          npx lerna publish from-package --yes
+          npx lerna publish from-package --yes --contents pkg
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
