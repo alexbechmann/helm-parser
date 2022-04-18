@@ -97,7 +97,7 @@ async function run(args: any) {
     import { HelmParser } from "helm-parser";
     ${helmParserLines}
 
-    test("can set replicas to 3", () => {
+    test("example test", () => {
       const result = helmParser.template({
         namespace: "my-namespace",
         releaseName: "my-release",
