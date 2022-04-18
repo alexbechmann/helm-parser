@@ -7,6 +7,9 @@
   },
   "scripts": {
     "test": "npm-run-all test:with-values.schema test:without-values.schema",
+    "posttest": "npm run cleanup",
+    "pretest": "npm run cleanup",
+    "cleanup": "rm -rf ./example1 && rm -rf ./example2",
     "test:with-values.schema": "rm -rf ./example1 && node ./bin/index.js example1 --chart-path ../../test/charts/my-chart && cd example1 && npm test -- --run",
     "test:without-values.schema": "rm -rf ./example2 && node ./bin/index.js example2 --chart-path ../../test/charts/my-chart2 && cd example2 && npm test -- --run"
   },
