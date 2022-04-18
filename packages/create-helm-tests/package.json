@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pika-pack build",
+    "build": "pika build",
     "test": "npm-run-all test:with-values.schema test:without-values.schema",
     "posttest": "npm run cleanup",
     "pretest": "npm run cleanup && npm run build",
