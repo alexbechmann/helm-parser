@@ -4,16 +4,10 @@ on:
     branches:
       - main
       - develop
-    paths:
-      - "packages/helm-parser"
-      - "version.json"
   pull_request:
     branches:
       - main
       - develop
-    paths:
-      - "packages/helm-parser"
-      - "version.json"
 
 jobs:
   build:
@@ -23,7 +17,7 @@ jobs:
     strategy:
       matrix:
         node:
-          - "14.x"
+          - "16.x"
         os:
           - ubuntu-latest
           # - windows-latest
@@ -41,17 +35,21 @@ jobs:
       - name: Npm Install
         run: npm install
 
+      - name: Build
+        run: npm run build
+        working-directory: ./packages/helm-parser
+
       - name: Test install
         run: npm install
         working-directory: ./test
 
-      - name: Test
+      - name: Test helm-parser
         run: npm test
         working-directory: ./test
 
-      - name: Build
-        run: npm build
-        working-directory: ./packages/helm-parser
+      - name: Test create-helm-tests
+        run: npm test
+        working-directory: ./packages/create-helm-tests
 
   publish:
     name: Publish package
@@ -68,13 +66,16 @@ jobs:
       - name: Use Node
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
 
       - name: Npm Install
         run: npm install
 
       - name: Copy README
         run: cp ./README.md ./packages/helm-parser/README.md
+
+      - name: Copy README
+        run: cp ./README.md ./packages/create-helm-tests/README.md
 
       - name: Version
         run: |
@@ -85,12 +86,15 @@ jobs:
           git config --global user.name "helm-parser build"
           git commit -am "Temp version commit"
 
+      - name: Build
+        run: npm run build
+
       - name: Lerna publish
         if: github.ref == 'refs/heads/develop'
         run: |
           npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
           npm config set access public
-          npx lerna publish from-package --yes --dist-tag alpha
+          npx lerna publish from-package --yes --contents pkg --dist-tag alpha
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -100,7 +104,27 @@ jobs:
         run: |
           npm set //registry.npmjs.org/:_authToken $NPM_TOKEN
           npm config set access public
-          npx lerna publish from-package --yes
+          npx lerna publish from-package --yes --contents pkg
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  e2e:
+    name: e2e tests
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+    needs:
+      - publish
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: e2e test main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          npx create-helm-tests example1 --chart-path ./test/charts/my-chart && cd example1 && npm test -- --run
+
+      - name: e2e test alpha
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          npx create-helm-tests@alpha example1 --chart-path ./test/charts/my-chart && cd example1 && npm test -- --run

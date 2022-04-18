@@ -2,7 +2,9 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "build": "lerna run build --stream",
+    "test": "lerna run test --stream"
   },
   "devDependencies": {
     "lerna": "^4.0.0",
