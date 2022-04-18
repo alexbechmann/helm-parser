@@ -2,12 +2,12 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import fs from "fs-extra";
 import path from "path";
-import chalk from "chalk";
 import { runCommand } from "./run-command";
 import prettier from "prettier";
 
 async function run(args: any) {
   const argv: any = yargs(hideBin(args)).argv;
+  const chalk = await import("chalk").then((m) => m.default);
 
   const name = argv._[0];
   const { chartPath } = argv;
