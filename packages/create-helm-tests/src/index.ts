@@ -10,6 +10,17 @@ const argv: any = yargs(hideBin(process.argv)).argv;
 
 const name = argv._[0];
 const { chartPath } = argv;
+
+if (!name) {
+  console.log(chalk.red("You must specify a name for your tests project"));
+  process.exit(1);
+}
+
+if (!chartPath) {
+  console.log(chalk.red("You must specify a chart path with --chart-path"));
+  process.exit(1);
+}
+
 const absoluteTestsPath = path.resolve(process.cwd(), name);
 const testsPath = path.resolve(process.cwd(), name, "test");
 const testFilePath = path.resolve(process.cwd(), name, "test/main.test.ts");
