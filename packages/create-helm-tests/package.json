@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "build": "pika build",
     "test": "npm-run-all test:with-values.schema test:without-values.schema",
