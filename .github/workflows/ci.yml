@@ -71,11 +71,11 @@ jobs:
       - name: Npm Install
         run: npm install
 
-      - name: Build
-        run: npm run build
-
       - name: Copy README
         run: cp ./README.md ./packages/helm-parser/README.md
+
+      - name: Copy README
+        run: cp ./README.md ./packages/create-helm-tests/README.md
 
       - name: Version
         run: |
@@ -85,6 +85,9 @@ jobs:
           git config --global user.email "build@helm-parser.com"
           git config --global user.name "helm-parser build"
           git commit -am "Temp version commit"
+
+      - name: Build
+        run: npm run build
 
       - name: Lerna publish
         if: github.ref == 'refs/heads/develop'
