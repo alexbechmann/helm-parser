@@ -39,9 +39,13 @@ jobs:
         run: npm install
         working-directory: ./test
 
-      - name: Test
+      - name: Test helm-parser
         run: npm test
         working-directory: ./test
+
+      - name: Test create-helm-tests
+        run: npm test
+        working-directory: ./packages/create-helm-tests
 
       - name: Build
         run: npm run build
