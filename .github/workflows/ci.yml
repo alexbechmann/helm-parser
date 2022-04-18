@@ -71,6 +71,9 @@ jobs:
       - name: Npm Install
         run: npm install
 
+      - name: Build
+        run: npm run build
+
       - name: Copy README
         run: cp ./README.md ./packages/helm-parser/README.md
 
