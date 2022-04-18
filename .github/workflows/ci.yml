@@ -102,3 +102,13 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: e2e test main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          npx create-helm-tests example1 --chart-path ./test/charts/my-chart && cd example1 && npm test -- --run
+
+      - name: e2e test alpha
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          npx create-helm-tests@alpha example1 --chart-path ./test/charts/my-chart && cd example1 && npm test -- --run
