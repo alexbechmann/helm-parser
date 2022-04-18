@@ -5,9 +5,15 @@ import path from "path";
 import { runCommand } from "./run-command";
 import prettier from "prettier";
 
+const chalk = {
+  red: (text: string) => text,
+  green: (text: string) => text,
+  blue: (text: string) => text,
+  yellow: (text: string) => text,
+};
+
 async function run(args: any) {
   const argv: any = yargs(hideBin(args)).argv;
-  const chalk = await import("chalk").then((m) => m.default);
 
   const name = argv._[0];
   const { chartPath } = argv;
