@@ -45,7 +45,6 @@ const helmParser = new HelmParser({
 });
 
 const result = helmParser.template({
-  chartPath,
   namespace: "my-namespace",
   releaseName: "my-release",
   values: {
